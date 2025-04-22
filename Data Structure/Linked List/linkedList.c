@@ -49,10 +49,42 @@ struct node* insertToEnd_O1(struct node *lastNode, int value){
 
 // Create a new node and add to start
 // Return the new Head Address
+// Pass by Value, thats why we need to return new head.
 struct node* insertToBegin(struct node* head, int value){
     struct node* newNode = createNode(value);
     newNode->next = head;
     return head = newNode;
+}
+
+
+void insertIntoSpecificPoint(struct node* head, int position, int value){
+    if(head == NULL) {
+        printf("List Empty, You can't add the value in %d position\n", position);
+        return;
+    };
+    if((position - 1) >= sizeOfList(head)) {
+        printf("List's Size is %d, You can't add value in %d position \n", sizeOfList(head), position);
+        return;
+    };
+    struct node* newNode = createNode(value);
+    struct node* temp = head;
+
+    int count = 1;
+    while (temp)
+    {
+        count++;
+        temp = temp->next;
+        if(count == (position - 1)){
+            break;
+        }
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
+
+    printf("Temp-> %p \n", temp);
+    printf("Temp->value -> %d \n", temp->value);
+    printf("Temp->next -> %p \n", temp->next);
+
 }
 
 int main(){
@@ -71,11 +103,9 @@ int main(){
     HEAD = insertToBegin(HEAD, 01);
 
     // printf("new Node -> %p \n", insertToBegin(HEAD, 5));
-    printf("Head : %d \n", HEAD);
-    
-    printf("Head->value : %d \n", HEAD->value);
-    printf("Head->next : %p \n", HEAD->next);
-
+    printf("Size -> %d \n", sizeOfList(HEAD));
+    insertIntoSpecificPoint(HEAD, 3, 100);
+    insertIntoSpecificPoint(HEAD, 3, 200);
     printList(HEAD);
     return 0;
 }
