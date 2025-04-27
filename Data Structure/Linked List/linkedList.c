@@ -109,6 +109,44 @@ void deleteFromEnd(struct node *head){
     free(temp);
 }
 
+
+void deleteIntoSpecificPoint(struct node* head, int position){
+    if(head == NULL) {
+        printf("List Empty, You can't delete the value from %d position\n", position);
+        return;
+    };
+    if((position - 1) >= sizeOfList(head)) {
+        printf("List's Size is %d, You can't delete value from %d position \n", sizeOfList(head), position);
+        return;
+    };
+    
+    struct node* prev = head;
+    struct node* next = NULL;
+
+    int count = 1;
+    while (prev)
+    {
+        count++;
+        prev = prev->next;
+        next = prev->next;
+        if(count == (position - 1)){
+            break;
+        }
+    }
+    prev->next = next->next;
+    
+
+    // printf("prev-> %p \n", prev);
+    // printf("prev->value -> %d \n", prev->value);
+    // printf("prev->next -> %p \n\n\n", prev->next);
+
+    // printf("next-> %p \n", next);
+    // printf("next->value -> %d \n", next->value);
+    // printf("next->next -> %p \n", next->next);
+
+}
+
+
 int main(){
     struct node *HEAD  = (struct node *) malloc(sizeof(struct node));
     struct node *lastNode = (struct node *) malloc(sizeof(struct node));
@@ -132,6 +170,7 @@ int main(){
 
     deleteFromEnd(HEAD);
     deleteFromEnd(HEAD);
+    deleteIntoSpecificPoint(HEAD, 3);
 
     printList(HEAD);
     return 0;
