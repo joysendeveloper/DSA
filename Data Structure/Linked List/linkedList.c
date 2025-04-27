@@ -46,7 +46,6 @@ struct node* insertToEnd_O1(struct node *lastNode, int value){
     return lastNode->next = createNode(value);
 }
 
-
 // Create a new node and add to start
 // Return the new Head Address
 struct node* insertToBegin(struct node* head, int value){
@@ -55,6 +54,9 @@ struct node* insertToBegin(struct node* head, int value){
     return head = newNode;
 }
 
+void deleteFromBegin(struct node *head){
+
+}
 int main(){
     struct node *HEAD  = (struct node *) malloc(sizeof(struct node));
     struct node *lastNode = (struct node *) malloc(sizeof(struct node));
