@@ -11,10 +11,10 @@ void merge_sort(int arr[], int start, int end){
     int mid = start + (end - start) / 2;
     printf("start: %d, end: %d, mid: %d\n", start, end, mid);
 
-    merge_sort(arr, start, mid);
-    merge_sort(arr, mid + 1, end);
+    merge_sort(arr, start, mid); // Left half
+    merge_sort(arr, mid + 1, end); // Right half
 
-    merge(arr, start, mid, end);
+    merge(arr, start, mid, end); // Merge the two halves
 
 }
 
